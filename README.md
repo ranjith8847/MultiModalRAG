@@ -20,16 +20,16 @@ which transcribes them into structured XML. This approach:
 
 ```
 ┌─────────────┐      ┌──────────────┐     ┌─────────────────┐
-│  Documents   │────▶│   Ingestion  │────▶│  Page Images    │
-│  (PDF/PPTX)  │     │ (pdf2image,  │     │  (high-res PNG) │
-│              │     │  python-pptx)│     │                 │
+│  Documents  │ ────▶│   Ingestion  │────▶│  Page Images    │
+│  (PDF/PPTX) │      │ (pdf2image,  │     │  (high-res PNG) │
+│             │      │  python-pptx)│     │                 │
 └─────────────┘      └──────────────┘     └────────┬────────┘
                                                    │
                                                    ▼
 ┌─────────────┐     ┌──────────────┐      ┌─────────────────┐
 │    RAG      │◀────│  Vector DB   │◀──── │  Semantic Chunks│
-│  Query/Answer│    │  (Chroma/    │      │  (XML-aware)    │
-│              │    │   FAISS)     │      │                 │
+│ Query/Answer│     │  (Chroma/    │      │  (XML-aware)    │
+│             │     │   FAISS)     │      │                 │
 └─────────────┘     └──────────────┘      └────────┬────────┘
                                                    │
                                                    ▼
