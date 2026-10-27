@@ -19,27 +19,27 @@ which transcribes them into structured XML. This approach:
 ## 📊 Pipeline Architecture
 
 ```
-┌─────────────┐     ┌──────────────┐     ┌─────────────────┐
+┌─────────────┐      ┌──────────────┐     ┌─────────────────┐
 │  Documents   │────▶│   Ingestion  │────▶│  Page Images    │
 │  (PDF/PPTX)  │     │ (pdf2image,  │     │  (high-res PNG) │
 │              │     │  python-pptx)│     │                 │
-└─────────────┘     └──────────────┘     └────────┬────────┘
+└─────────────┘      └──────────────┘     └────────┬────────┘
                                                    │
                                                    ▼
-┌─────────────┐     ┌──────────────┐     ┌─────────────────┐
-│    RAG      │◀────│  Vector DB   │◀────│  Semantic Chunks│
-│  Query/Answer│     │  (Chroma/   │     │  (XML-aware)    │
-│              │     │   FAISS)    │     │                 │
-└─────────────┘     └──────────────┘     └────────┬────────┘
+┌─────────────┐     ┌──────────────┐      ┌─────────────────┐
+│    RAG      │◀────│  Vector DB   │◀──── │  Semantic Chunks│
+│  Query/Answer│    │  (Chroma/    │      │  (XML-aware)    │
+│              │    │   FAISS)     │      │                 │
+└─────────────┘     └──────────────┘      └────────┬────────┘
                                                    │
                                                    ▼
 ┌─────────────────────────────────────────────────────────────┐
 │                   LLM Transcription (Parallel)              │
 │                                                             │
 │  Page 1 Image ──┐                                           │
-│  Page 2 Image ──┤──▶ GPT-4o / Claude ──▶ Structured XML    │
-│  Page 3 Image ──┤      (Multi-modal)    (tables, figures,  │
-│     ...        ─┘                        flowcharts, text) │
+│  Page 2 Image ──┤──▶ GPT-4o / Claude ──▶ Structured XML     │
+│  Page 3 Image ──┤      (Multi-modal)    (tables, figures,   │
+│     ...        ─┘                        flowcharts, text)  │
 └─────────────────────────────────────────────────────────────┘
 ```
 
